@@ -1,0 +1,36 @@
+## Spring DATASOURCE (DataSourceAutoConfiguration & DataSourceProperties)
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 12345678
+    url: jdbc:mysql://localhost:3306/demo
+    platform: demo
+    initialization-mode: always
+    continue-on-error: true
+  jpa:
+    show-sql: false
+#    generate-ddl: true
+    hibernate:
+      ddl-auto: none
+    database: mysql
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false;
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+
+
+
+  queries:
+    users-query: select email, password, active from users where email=?
+    roles-query: select email, role from users where email=?
+
+# Thay đổi đường dẫn ngữ cảnh thay vì "http://localhost:PORT/"
+server:
+  servlet:
+    contextPath: /api
+
+ # thời điểm token sẽ hết hạn và chuỗi jwtSecret!
+jwtSecret: me.sunrise
+jwtExpiration: 86400
