@@ -8,7 +8,7 @@ import java.util.Collection;
 
 public interface UserRepository extends JpaRepository<User, String> {
     User findByEmail(String email);
-    User findUserById(Long id);
+    User findById(Long id);
     Collection<User> findAllByRole(String role);
     Page<User> findAll(Pageable pageable);
 

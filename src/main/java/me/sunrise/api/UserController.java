@@ -1,5 +1,6 @@
 package me.sunrise.api;
 
+import me.sunrise.entity.ProductInfo;
 import me.sunrise.entity.User;
 import me.sunrise.security.JWT.JwtProvider;
 import me.sunrise.service.UserService;
@@ -50,7 +51,7 @@ public class UserController {
             String jwt = jwtProvider.generate(authentication);
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
             User user = userService.findOne(userDetails.getUsername());
-            return ResponseEntity.ok(new JwtResponse(jwt, user.getEmail(), user.getName(), user.getRole()));
+            return ResponseEntity.ok(new JwtResponse(jwt, user.getEmail(), user.getName(), user.getRole(), user.getAddress(),user.getPhone()));
         } catch (AuthenticationException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
@@ -97,6 +98,22 @@ public class UserController {
 
         return userPage;
     }
+
+
+    @PutMapping("/edit/user/{id}")
+    public ResponseEntity edit(@PathVariable("id") Long id,
+                               @Valid @RequestBody User user,
+                               BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return ResponseEntity.badRequest().body(bindingResult);
+        }
+        if (!id.equals(user.getId())) {
+            return ResponseEntity.badRequest().body("Id Not Matched");
+        }
+
+        return ResponseEntity.ok(userService.updateUser(user));
+    }
+
     @DeleteMapping("/delete/user/{id}")
     public ResponseEntity delete(@PathVariable("id") Long id) {
         userService.delete(id);

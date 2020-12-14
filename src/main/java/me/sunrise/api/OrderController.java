@@ -2,12 +2,15 @@ package me.sunrise.api;
 
 
 import me.sunrise.entity.OrderMain;
+import me.sunrise.entity.ProductCategory;
 import me.sunrise.entity.ProductInOrder;
+import me.sunrise.enums.OrderStatusEnum;
 import me.sunrise.service.OrderService;
 import me.sunrise.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -38,7 +41,19 @@ public class OrderController {
         }
         return orderPage;
     }
-
+    @GetMapping("/order/chart")
+    public Page<OrderMain> orderListchart(@RequestParam(value = "page", defaultValue = "1") Integer page,
+                                     @RequestParam(value = "size", defaultValue = "10") Integer size,
+                                     Authentication authentication) {
+        PageRequest request = PageRequest.of(page - 1, size);
+        Page<OrderMain> orderPage;
+        if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_CUSTOMER"))) {
+            orderPage = orderService.findByStatus(OrderStatusEnum.FINISHED.getCode(), Pageable.unpaged());
+        } else {
+            orderPage = orderService.findAll(request);
+        }
+        return orderPage;
+    }
 
     @PatchMapping("/order/cancel/{id}")
     public ResponseEntity<OrderMain> cancel(@PathVariable("id") Long orderId, Authentication authentication) {

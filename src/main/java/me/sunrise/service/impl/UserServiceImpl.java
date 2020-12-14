@@ -32,8 +32,9 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByEmail(email);
     }
 
+    @Override
     public User findUserById(Long id) {
-        return userRepository.findUserById(id);
+        return userRepository.findById(id);
     }
 
     @Override
@@ -77,8 +78,16 @@ public class UserServiceImpl implements UserService {
         userRepository.delete(user);
     }
 
-
-
+    @Override
+    @Transactional
+    public User updateUser(User user) {
+        User oldUser = userRepository.findById(user.getId());
+        oldUser.setPassword(passwordEncoder.encode(user.getPassword()));
+        oldUser.setName(user.getName());
+        oldUser.setPhone(user.getPhone());
+        oldUser.setAddress(user.getAddress());
+        return userRepository.save(oldUser);
+    }
 
     @Override
     public Page<User> findAll(Pageable pageable) {

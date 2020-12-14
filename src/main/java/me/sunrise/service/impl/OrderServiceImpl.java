@@ -41,7 +41,10 @@ public class OrderServiceImpl implements OrderService {
     public Page<OrderMain> findByStatus(Integer status, Pageable pageable) {
         return orderRepository.findAllByOrderStatusOrderByCreateTimeDesc(status, pageable);
     }
-
+//    @Override
+//    public Page<OrderMain> findByStatus1(Integer orderStatus, Pageable pageable) {
+//        return orderRepository.findAllByOrderStatusOrderByCreateTimeDesc(orderStatus, pageable);
+//    }
     @Override
     public Page<OrderMain> findByBuyerEmail(String email, Pageable pageable) {
         return orderRepository.findAllByBuyerEmailOrderByOrderStatusAscCreateTimeDesc(email, pageable);

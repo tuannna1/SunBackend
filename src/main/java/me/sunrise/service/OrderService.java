@@ -22,4 +22,5 @@ public interface OrderService {
 
     OrderMain cancel(Long orderId);
 
+//    Page<OrderMain> findByStatus1(Integer orderStatus);
 }

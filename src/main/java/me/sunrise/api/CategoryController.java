@@ -75,21 +75,6 @@ public class CategoryController {
     }
 
 
-//    @PutMapping("/seller/category/{categoryId}/edit")
-//    public ResponseEntity edit(@PathVariable("categoryId") Integer categoryId,
-//                               @Valid @RequestBody ProductCategory category,
-//                               BindingResult bindingResult) {
-//    category = categoryRepository.findById();
-//        System.out.println(category);
-//        if (bindingResult.hasErrors()) {
-//            return ResponseEntity.badRequest().body(bindingResult);
-//        }
-//        if (!categoryId.equals(category.getCategoryId())) {
-//            return ResponseEntity.badRequest().body("Id Not Matched");
-//        }
-//
-//        return ResponseEntity.ok(categoryService.update(category));
-//    }
 @PutMapping("/seller/category/{id}/edit")
 public ResponseEntity<ProductCategory> updateEmployee(@PathVariable(value = "id") Integer categoryId,
                                                       @Valid @RequestBody ProductCategory employeeDetails) throws ResourceNotFoundException {

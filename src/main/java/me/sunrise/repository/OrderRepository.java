@@ -18,4 +18,6 @@ public interface OrderRepository extends JpaRepository<OrderMain, Integer> {
     Page<OrderMain> findAllByOrderByOrderStatusAscCreateTimeDesc(Pageable pageable);
 
     Page<OrderMain> findAllByBuyerPhoneOrderByOrderStatusAscCreateTimeDesc(String buyerPhone, Pageable pageable);
+
+//    Page<OrderMain> findAllByOrderStatusOrderByCreateTimeDesc(Integer orderStatus, Pageable pageable);
 }
