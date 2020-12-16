@@ -15,7 +15,6 @@
     <description>Online Shopping API Server</description>
 
     <properties>
-        <java.version>8</java.version>
     </properties>
 
     <dependencies>
