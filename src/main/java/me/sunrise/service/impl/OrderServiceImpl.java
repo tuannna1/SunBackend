@@ -38,6 +38,21 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public Page<OrderMain> findstatus1(Pageable pageable) {
+        return orderRepository.getOrderStatus1(pageable);
+    }
+
+    @Override
+    public Page<OrderMain> findstatus2(Pageable pageable) {
+        return orderRepository.getOrderStatus2(pageable);
+    }
+
+    @Override
+    public Page<OrderMain> findstatus3(Pageable pageable) {
+        return orderRepository.getOrderStatus3(pageable);
+    }
+
+    @Override
     public Page<OrderMain> findByStatus(Integer status, Pageable pageable) {
         return orderRepository.findAllByOrderStatusOrderByCreateTimeDesc(status, pageable);
     }

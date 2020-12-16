@@ -1,6 +1,7 @@
 package me.sunrise.service.impl;
 
 
+import me.sunrise.entity.OrderMain;
 import me.sunrise.entity.ProductInfo;
 import me.sunrise.enums.ProductStatusEnum;
 import me.sunrise.enums.ResultEnum;
@@ -22,6 +23,28 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     CategoryService categoryService;
+
+
+
+    @Override
+    public Page<ProductInfo>under25(Pageable pageable) {
+        return productInfoRepository.under25(pageable);
+    }
+    @Override
+    public Page<ProductInfo>from25to50(Pageable pageable) {
+        return productInfoRepository.from25to50(pageable);
+    }
+    @Override
+    public Page<ProductInfo>from50to100(Pageable pageable) {
+        return productInfoRepository.from50to100(pageable);
+    } @Override
+    public Page<ProductInfo>from100to200(Pageable pageable) {
+        return productInfoRepository.from100to200(pageable);
+    } @Override
+    public Page<ProductInfo>above200(Pageable pageable) {
+        return productInfoRepository.above200(pageable);
+    }
+
 
     @Override
     public ProductInfo findOne(String productId) {
@@ -79,7 +102,7 @@ public class ProductServiceImpl implements ProductService {
             throw new MyException(ResultEnum.PRODUCT_STATUS_ERROR);
         }
 
-        //更新
+
         productInfo.setProductStatus(ProductStatusEnum.DOWN.getCode());
         return productInfoRepository.save(productInfo);
     }

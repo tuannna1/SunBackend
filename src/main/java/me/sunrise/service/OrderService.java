@@ -7,7 +7,16 @@ import org.springframework.data.domain.Pageable;
 public interface OrderService {
     Page<OrderMain> findAll(Pageable pageable);
 
-    Page<OrderMain> findByStatus(Integer status, Pageable pageable);
+
+    Page<OrderMain> findstatus1(Pageable pageable);
+
+    Page<OrderMain> findstatus2(Pageable pageable);
+
+    Page<OrderMain> findstatus3(Pageable pageable);
+
+
+
+    abstract Page<OrderMain> findByStatus(Integer status, Pageable pageable);
 
     Page<OrderMain> findByBuyerEmail(String email, Pageable pageable);
 

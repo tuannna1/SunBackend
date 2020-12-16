@@ -75,5 +75,33 @@ public class ProductController {
         productService.delete(productId);
         return ResponseEntity.ok().build();
     }
-
+    @GetMapping("/product/under25")
+    public Page<ProductInfo> under25(@RequestParam(value = "page", defaultValue = "1") Integer page,
+                                     @RequestParam(value = "size", defaultValue = "3") Integer size) {
+        PageRequest request = PageRequest.of(page - 1, size);
+        return productService.under25(request);
+    }
+    @GetMapping("/product/from25to50")
+    public Page<ProductInfo> from25to50(@RequestParam(value = "page", defaultValue = "1") Integer page,
+                                     @RequestParam(value = "size", defaultValue = "3") Integer size) {
+        PageRequest request = PageRequest.of(page - 1, size);
+        return productService.from25to50(request);
+    }
+    @GetMapping("/product/from50to100")
+    public Page<ProductInfo> from50to100(@RequestParam(value = "page", defaultValue = "1") Integer page,
+                                     @RequestParam(value = "size", defaultValue = "3") Integer size) {
+        PageRequest request = PageRequest.of(page - 1, size);
+        return productService.from50to100(request);
+    }
+    @GetMapping("/product/from100to200")
+    public Page<ProductInfo> from100to200(@RequestParam(value = "page", defaultValue = "1") Integer page,
+                                     @RequestParam(value = "size", defaultValue = "3") Integer size) {
+        PageRequest request = PageRequest.of(page - 1, size);
+        return productService.from100to200(request);
+    }@GetMapping("/product/above200")
+    public Page<ProductInfo> above200(@RequestParam(value = "page", defaultValue = "1") Integer page,
+                                     @RequestParam(value = "size", defaultValue = "3") Integer size) {
+        PageRequest request = PageRequest.of(page - 1, size);
+        return productService.above200(request);
+    }
 }

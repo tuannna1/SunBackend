@@ -5,6 +5,7 @@ import me.sunrise.entity.OrderMain;
 import me.sunrise.entity.ProductCategory;
 import me.sunrise.entity.ProductInOrder;
 import me.sunrise.enums.OrderStatusEnum;
+import me.sunrise.repository.OrderRepository;
 import me.sunrise.service.OrderService;
 import me.sunrise.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.List;
 
 
 @RestController
@@ -27,6 +29,8 @@ public class OrderController {
     OrderService orderService;
     @Autowired
     UserService userService;
+    @Autowired
+    OrderRepository orderRepository;
 
     @GetMapping("/order")
     public Page<OrderMain> orderList(@RequestParam(value = "page", defaultValue = "1") Integer page,
@@ -41,10 +45,11 @@ public class OrderController {
         }
         return orderPage;
     }
+
     @GetMapping("/order/chart")
     public Page<OrderMain> orderListchart(@RequestParam(value = "page", defaultValue = "1") Integer page,
-                                     @RequestParam(value = "size", defaultValue = "10") Integer size,
-                                     Authentication authentication) {
+                                          @RequestParam(value = "size", defaultValue = "10") Integer size,
+                                          Authentication authentication) {
         PageRequest request = PageRequest.of(page - 1, size);
         Page<OrderMain> orderPage;
         if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_CUSTOMER"))) {
@@ -92,4 +97,48 @@ public class OrderController {
         Collection<ProductInOrder> items = orderMain.getProducts();
         return ResponseEntity.ok(orderMain);
     }
+
+    @GetMapping("/order/status1")
+    public Page<OrderMain> getStatus1(@RequestParam(value = "page", defaultValue = "1") Integer page,
+                                      @RequestParam(value = "size", defaultValue = "10") Integer size,
+                                      Authentication authentication) {
+        PageRequest request = PageRequest.of(page - 1, size);
+        Page<OrderMain> orderPage;
+        if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_CUSTOMER"))) {
+            orderPage = orderService.findByBuyerEmail(authentication.getName(), request);
+        } else {
+            orderPage = orderService.findstatus1(request);
+        }
+        return orderPage;
+    }
+
+
+    @GetMapping("/order/status2")
+    public Page<OrderMain> getStatus2(@RequestParam(value = "page2", defaultValue = "1") Integer page2,
+                                      @RequestParam(value = "size", defaultValue = "10") Integer size,
+                                      Authentication authentication) {
+        PageRequest request = PageRequest.of(page2 - 1, size);
+        Page<OrderMain> orderPage;
+        if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_CUSTOMER"))) {
+            orderPage = orderService.findByBuyerEmail(authentication.getName(), request);
+        } else {
+            orderPage = orderService.findstatus2(request);
+        }
+        return orderPage;
+    }
+    @GetMapping("/order/status3")
+    public Page<OrderMain> getStatus3(@RequestParam(value = "page", defaultValue = "1") Integer page,
+                                      @RequestParam(value = "size", defaultValue = "10") Integer size,
+                                      Authentication authentication) {
+        PageRequest request = PageRequest.of(page - 1, size);
+        Page<OrderMain> orderPage;
+        if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_CUSTOMER"))) {
+            orderPage = orderService.findByBuyerEmail(authentication.getName(), request);
+        } else {
+            orderPage = orderService.findstatus3(request);
+        }
+        return orderPage;
+    }
+
+
 }
