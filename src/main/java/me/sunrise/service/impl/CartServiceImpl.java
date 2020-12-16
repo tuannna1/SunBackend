@@ -66,7 +66,7 @@ public class CartServiceImpl implements CartService {
     @Override
     @Transactional
     public void delete(String itemId, User user) {
-        var op = user.getCart().getProducts().stream().filter(e -> itemId.equals(e.getProductId())).findFirst();
+        Optional<ProductInOrder> op = user.getCart().getProducts().stream().filter(e -> itemId.equals(e.getProductId())).findFirst();
         op.ifPresent(productInOrder -> {
             productInOrder.setCart(null);
             productInOrderRepository.deleteById(productInOrder.getId());

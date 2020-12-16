@@ -3,6 +3,7 @@ package me.sunrise.api;
 
 import me.sunrise.entity.Cart;
 import me.sunrise.entity.ProductInOrder;
+import me.sunrise.entity.ProductInfo;
 import me.sunrise.entity.User;
 import me.sunrise.form.ItemForm;
 import me.sunrise.repository.ProductInOrderRepository;
@@ -53,7 +54,7 @@ public class CartController {
 
     @PostMapping("/add")
     public boolean addToCart(@RequestBody ItemForm form, Principal principal) {
-        var productInfo = productService.findOne(form.getProductId());
+        ProductInfo productInfo = productService.findOne(form.getProductId());
         try {
             mergeCart(Collections.singleton(new ProductInOrder(productInfo, form.getQuantity())), principal);
         } catch (Exception e) {
@@ -65,15 +66,15 @@ public class CartController {
     @PutMapping("/{itemId}")
     public ProductInOrder modifyItem(@PathVariable("itemId") String itemId, @RequestBody Integer quantity, Principal principal) {
         User user = userService.findOne(principal.getName());
-         productInOrderService.update(itemId, quantity, user);
+        productInOrderService.update(itemId, quantity, user);
         return productInOrderService.findOne(itemId, user);
     }
 
     @DeleteMapping("/{itemId}")
     public void deleteItem(@PathVariable("itemId") String itemId, Principal principal) {
         User user = userService.findOne(principal.getName());
-         cartService.delete(itemId, user);
-         // flush memory into DB
+        cartService.delete(itemId, user);
+        // flush memory into DB
     }
 
 

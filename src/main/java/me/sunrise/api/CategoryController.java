@@ -59,7 +59,7 @@ public class CategoryController {
         ProductCategory cat = categoryService.findByCategoryType(categoryType);
         PageRequest request = PageRequest.of(page - 1, size);
         Page<ProductInfo> productInCategory = productService.findAllInCategory(categoryType, request);
-        var tmp = new CategoryPage("", productInCategory);
+        CategoryPage tmp = new CategoryPage("", productInCategory);
         tmp.setCategory(cat.getCategoryName());
         return tmp;
     }
