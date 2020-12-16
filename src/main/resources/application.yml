@@ -9,6 +9,7 @@ spring:
     initialization-mode: always
     continue-on-error: true
 
+#Database of Liem
 #    spring.datasource.url=jdbc:mysql://homespace-do-user-1901727-0.b.db.ondigitalocean.com:25060/defaultdb?allowPublicKeyRetrieval=true&useSSL=false
 #    spring.datasource.username=doadmin
 #    spring.datasource.password=sm1qvn3hjeqy5fxy
