@@ -30,8 +30,7 @@ spring:
 server:
   servlet:
     contextPath: /api
-  port:
-    {$PORT:8080}
+  port: ${PORT:8080}
   # thời điểm token sẽ hết hạn và chuỗi jwtSecret!
 jwtSecret: me.sunrise
 jwtExpiration: 86400
