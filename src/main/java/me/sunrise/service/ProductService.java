@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 
 public interface ProductService {
 
+
     Page<ProductInfo>under25(Pageable pageable);
 
     Page<ProductInfo>from25to50(Pageable pageable);

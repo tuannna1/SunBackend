@@ -86,7 +86,7 @@ public class ProductServiceImpl implements ProductService {
         if (productInfo == null) throw new MyException(ResultEnum.PRODUCT_NOT_EXIST);
 
         int update = productInfo.getProductStock() - amount;
-        if(update <= 0) throw new MyException(ResultEnum.PRODUCT_NOT_ENOUGH );
+//        if(update <= 0) throw new MyException(ResultEnum.PRODUCT_NOT_ENOUGH );
 
         productInfo.setProductStock(update);
         productInfoRepository.save(productInfo);
