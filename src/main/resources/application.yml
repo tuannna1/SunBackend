@@ -10,7 +10,7 @@ spring:
     continue-on-error: true
   jpa:
     show-sql: false
-#    generate-ddl: true
+    #    generate-ddl: true
     hibernate:
       ddl-auto: none
     database: mysql
@@ -31,6 +31,6 @@ server:
   servlet:
     contextPath: /api
 
- # thời điểm token sẽ hết hạn và chuỗi jwtSecret!
+  # thời điểm token sẽ hết hạn và chuỗi jwtSecret!
 jwtSecret: me.sunrise
 jwtExpiration: 86400
