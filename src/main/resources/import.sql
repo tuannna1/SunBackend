@@ -35,4 +35,3 @@ INSERT INTO `users` VALUES (1,_binary '','274 Tô Hiệu, Hoà Minh, Liên Chi�
 -- ----------------------------
 INSERT INTO `cart` VALUES (1),(11),(12),(27);
 
-

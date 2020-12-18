@@ -139,6 +139,101 @@ public class OrderController {
         }
         return orderPage;
     }
+    @GetMapping("/order/status0")
+    public Page<OrderMain> getStatus0(@RequestParam(value = "page", defaultValue = "1") Integer page,
+                                      @RequestParam(value = "size", defaultValue = "10") Integer size,
+                                      Authentication authentication) {
+        PageRequest request = PageRequest.of(page - 1, size);
+        Page<OrderMain> orderPage;
+        if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_CUSTOMER"))) {
+            orderPage = orderService.findByBuyerEmail(authentication.getName(), request);
+        } else {
+            orderPage = orderService.findstatus0(request);
+        }
+        return orderPage;
+    }
 
+    @GetMapping("/order/getCountStatus0")
+    public Object[] getCountStatus0( Authentication authentication) {
+
+        if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_CUSTOMER"))) {
+
+        }return orderService.getcountStautus0();
+
+    }
+    @GetMapping("/order/getCountStatus1")
+    public Object[] getCountStatus1( Authentication authentication) {
+
+        if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_CUSTOMER"))) {
+
+        }return orderService.getcountStautus1();
+
+    }
+    @GetMapping("/order/getCountStatus2")
+    public Object[] getCountStatus2( Authentication authentication) {
+
+        if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_CUSTOMER"))) {
+
+        }return orderService.getcountStautus2();
+
+    }
+    @GetMapping("/order/getCountStatus3")
+    public Object[] getCountStatus3( Authentication authentication) {
+
+        if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_CUSTOMER"))) {
+
+        }return orderService.getcountStautus3();
+
+    }
+    @GetMapping("/order/getCountAll")
+    public Object[] getCountAll( Authentication authentication) {
+
+        if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_CUSTOMER"))) {
+
+        }return orderService.getcountAll();
+
+    }
+
+    @GetMapping("/order/getSumStatus0")
+    public Object[] getSumStatus0( Authentication authentication) {
+
+        if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_CUSTOMER"))) {
+
+        }return orderService.getsumStautus0();
+
+    }
+    @GetMapping("/order/getSumStatus1")
+    public Object[] getSumStatus1( Authentication authentication) {
+
+        if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_CUSTOMER"))) {
+
+        }return orderService.getsumStautus1();
+
+    }
+    @GetMapping("/order/getSumStatus2")
+    public Object[] getSumStatus2( Authentication authentication) {
+
+        if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_CUSTOMER"))) {
+
+        }return orderService.getsumStautus2();
+
+    }
+    @GetMapping("/order/getSumStatus3")
+    public Object[] getSumStatus3( Authentication authentication) {
+
+        if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_CUSTOMER"))) {
+
+        }return orderService.getsumStautus3();
+
+    }
+
+    @GetMapping("/order/getSumAll")
+    public Object[] getSumAll( Authentication authentication) {
+
+        if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_CUSTOMER"))) {
+
+        }return orderService.getsumAll();
+
+    }
 
 }

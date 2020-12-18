@@ -15,6 +15,28 @@ public interface OrderService {
     Page<OrderMain> findstatus3(Pageable pageable);
 
 
+    Page<OrderMain> findstatus0(Pageable pageable);
+
+
+    Object[] getcountStautus0();
+
+    Object[] getcountStautus1();
+
+    Object[] getcountStautus2();
+
+    Object[] getcountStautus3();
+
+    Object[] getcountAll();
+
+    Object[] getsumStautus0();
+
+    Object[] getsumStautus1();
+
+    Object[] getsumStautus2();
+
+    Object[] getsumStautus3();
+
+    Object[] getsumAll();
 
     abstract Page<OrderMain> findByStatus(Integer status, Pageable pageable);
 

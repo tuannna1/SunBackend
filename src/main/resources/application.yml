@@ -8,12 +8,6 @@ spring:
     platform: demo
     initialization-mode: always
     continue-on-error: true
-
-#Database of Liem
-#    spring.datasource.url=jdbc:mysql://homespace-do-user-1901727-0.b.db.ondigitalocean.com:25060/defaultdb?allowPublicKeyRetrieval=true&useSSL=false
-#    spring.datasource.username=doadmin
-#    spring.datasource.password=sm1qvn3hjeqy5fxy
-
   jpa:
     show-sql: false
 #    generate-ddl: true
@@ -36,9 +30,7 @@ spring:
 server:
   servlet:
     contextPath: /api
-  port:
-       ${PORT:8080}
 
-  # thời điểm token sẽ hết hạn và chuỗi jwtSecret!
+ # thời điểm token sẽ hết hạn và chuỗi jwtSecret!
 jwtSecret: me.sunrise
 jwtExpiration: 86400

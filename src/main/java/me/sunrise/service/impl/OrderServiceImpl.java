@@ -51,6 +51,52 @@ public class OrderServiceImpl implements OrderService {
     public Page<OrderMain> findstatus3(Pageable pageable) {
         return orderRepository.getOrderStatus3(pageable);
     }
+    @Override
+    public Page<OrderMain> findstatus0(Pageable pageable) {
+        return orderRepository.getOrderStatus0(pageable);
+    }
+
+    @Override
+    public Object[] getcountStautus0() {
+        return orderRepository.getcountStatus0();
+    }
+    @Override
+    public Object[] getcountStautus1() {
+        return orderRepository.getcountStatus1();
+    }
+    @Override
+    public Object[] getcountStautus2() {
+        return orderRepository.getcountStatus2();
+    }
+    @Override
+    public Object[] getcountStautus3() {
+        return orderRepository.getcountStatus3();
+    }
+    @Override
+    public Object[] getcountAll() {
+        return orderRepository.getcountAll();
+    }
+    @Override
+    public Object[] getsumStautus0() {
+        return orderRepository.getsumStatus0();
+    }
+    @Override
+    public Object[] getsumStautus1() {
+        return orderRepository.getsumStatus1();
+    }
+    @Override
+    public Object[] getsumStautus2() {
+        return orderRepository.getsumStatus2();
+    }
+    @Override
+    public Object[] getsumStautus3() {
+        return orderRepository.getsumStatus3();
+    }
+    @Override
+    public Object[] getsumAll() {
+        return orderRepository.getsumAll();
+    }
+
 
     @Override
     public Page<OrderMain> findByStatus(Integer status, Pageable pageable) {
