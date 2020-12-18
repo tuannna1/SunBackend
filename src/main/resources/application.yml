@@ -4,8 +4,8 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: 12345678
-    url: jdbc:mysql://localhost:3306/demo
-    platform: demo
+    url: jdbc:mysql://localhost:3306/demo1
+    platform: demo1
     initialization-mode: always
     continue-on-error: true
   jpa:
