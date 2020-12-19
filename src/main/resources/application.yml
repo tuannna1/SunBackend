@@ -5,6 +5,7 @@ spring:
     username: root
     password: 12345678
     url: jdbc:mysql://localhost:3306/demo
+    # Khởi tạo cơ sở dữ liệu bằng cách sử dụng các tập lệnh SQL cơ bản!
     platform: demo
     initialization-mode: always
     continue-on-error: true
@@ -12,7 +13,7 @@ spring:
     show-sql: false
     #    generate-ddl: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: create   # cho phép Hibernate create , update, ... table schema Mysql.
     database: mysql
     properties:
       hibernate:
@@ -21,7 +22,7 @@ spring:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
 
 
-
+  #SPRING SECURITY - truy vấn người dùng.
   queries:
     users-query: select email, password, active from users where email=?
     roles-query: select email, role from users where email=?

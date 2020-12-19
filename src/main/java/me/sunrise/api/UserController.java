@@ -45,11 +45,21 @@ public class UserController {
         // throws Exception if authentication failed
 
         try {
+            // Xác thực từ username và password.
             Authentication authentication = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(loginForm.getUsername(), loginForm.getPassword()));
+                    new UsernamePasswordAuthenticationToken(
+                            loginForm.getUsername(),
+                            loginForm.getPassword()));
+
+            // Nếu không xảy ra exception tức là thông tin hợp lệ
+            // Set thông tin authentication vào Security Context
             SecurityContextHolder.getContext().setAuthentication(authentication);
+
+            // Trả về jwt cho người dùng.
             String jwt = jwtProvider.generate(authentication);
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
+            // Lấy một số thông tin của người dùng khi đăng nhập.
             User user = userService.findOne(userDetails.getUsername());
             return ResponseEntity.ok(new JwtResponse(jwt, user.getEmail(), user.getName(), user.getRole(), user.getAddress(),user.getPhone()));
         } catch (AuthenticationException e) {

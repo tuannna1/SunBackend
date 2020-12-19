@@ -43,12 +43,13 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception{
+//         Thiết lập cấu hình xác thực và bảo mật
         auth
                 .jdbcAuthentication()
                 .usersByUsernameQuery(usersQuery)
                 .authoritiesByUsernameQuery(rolesQuery)
                 .dataSource(dataSource)
-                .passwordEncoder(passwordEncoder);
+                .passwordEncoder(passwordEncoder); // cung cấp password encoder
     }
 
     @Bean
@@ -57,8 +58,11 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
         return super.authenticationManagerBean();
     }
 
+    //Cấu hình đảm bảo mọi yêu cầu đến ứng dụng đều được xác thực và bảo mật bằng đăng nhập
+    // Cấu hình một số ủy quyền  trên mỗi URL
     @Override
     protected void configure(HttpSecurity http) throws Exception{
+        // Ngăn chặn request từ một domain khác
         http.cors().and().csrf().disable()
                 .authorizeRequests()
 
@@ -77,6 +81,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
+        // Thêm một lớp Filter kiểm tra jwt
         http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
     }
 

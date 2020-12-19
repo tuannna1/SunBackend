@@ -75,6 +75,9 @@ public class ProductController {
         productService.delete(productId);
         return ResponseEntity.ok().build();
     }
+
+
+
     @GetMapping("/product/under25")
     public Page<ProductInfo> under25(@RequestParam(value = "page", defaultValue = "1") Integer page,
                                      @RequestParam(value = "size", defaultValue = "3") Integer size) {

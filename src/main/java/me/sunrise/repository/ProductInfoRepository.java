@@ -1,6 +1,5 @@
 package me.sunrise.repository;
 
-import me.sunrise.entity.OrderMain;
 import me.sunrise.entity.ProductInfo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

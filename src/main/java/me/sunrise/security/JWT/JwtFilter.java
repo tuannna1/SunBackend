@@ -25,13 +25,15 @@ public class JwtFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
+        // Lấy jwt từ request
         String jwt = getToken(httpServletRequest);
+        //Kiểm tra và Lấy UserAccount từ chuỗi jwt
         if (jwt != null && jwtProvider.validate(jwt)) {
             try {
                 String userAccount = jwtProvider.getUserAccount(jwt);
                 User user = userService.findOne(userAccount);
-                // pwd not necessary
-                // if jwt ok, then authenticate
+                // Pwd  không cần thiết
+                // Nếu jwt ok, thì hãy xác thực
                 SimpleGrantedAuthority sga = new SimpleGrantedAuthority(user.getRole());
                 ArrayList<SimpleGrantedAuthority> list = new ArrayList<>();
                 list.add(sga);
@@ -49,6 +51,7 @@ public class JwtFilter extends OncePerRequestFilter {
     private String getToken(HttpServletRequest request) {
         String authHeader = request.getHeader("Authorization");
 
+        // Kiểm tra xem header Authorization có chứa thông tin jwt không
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             return authHeader.replace("Bearer ", "");
         }
